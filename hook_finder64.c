@@ -4,6 +4,8 @@
 #include <stdlib.h>
 
 VOID DumpListOfExport(VOID *lib);
+BOOL GetBytesByName(HANDLE hDll, CHAR *name);
+BOOL IsFalsePositive(CHAR *name);
 
 VOID DumpListOfExport(VOID *lib) {
     DWORD dwIter = 0;
