@@ -30,14 +30,29 @@ BOOL GetBytesByName(HANDLE hDll, CHAR *name) {
     DWORD* opcode = (DWORD*)*ptr;
 
     if((*opcode << 24) >> 24 == 0xe9) {
-        printf("%s is hooked\n", name);
+        if(!IsFalsePositive(name)) {
+            printf("%s is hooked\n", name);
+        }
     }
+}
+
+BOOL IsFalsePositive(CHAR *name) {
+    DWORD dwSize = 36;
+    DWORD i = 0;
+    CHAR *FPs[] = { "DbgQueryDebugFilterState","DbgSetDebugFilterState","EtwpGetCpuSpeed","LdrAccessResource","LdrCallEnclave","LdrProcessRelocationBlockEx","NtQuerySystemTime","RtlAddAtomToAtomTable","RtlBarrier","RtlCommitDebugInfo","RtlConstructCrossVmEventPath","RtlConstructCrossVmMutexPath","RtlConvertToAutoInheritSecurityObject","RtlCreateHashTableEx","RtlDeCommitDebugInfo","RtlDowncaseUnicodeChar","RtlEndWeakEnumerationHashTable","RtlEqualComputerName","RtlGetDeviceFamilyInfoEnum","RtlInitStringEx","RtlInitUTF8String","RtlInitUTF8StringEx","RtlInitWeakEnumerationHashTable","RtlInterlockedFlushSList","RtlInterlockedPushEntrySList","RtlInterlockedPushListSListEx","RtlSetTimer","RtlWeaklyEnumerateEntryHashTable","RtlWerpReportException","RtlWnfDllUnloadCallback","RtlpNtMakeTemporaryKey","ShipAssertMsgA","ShipAssertMsgW","TpSetTimer","ZwQuerySystemTime","towupper" };
+
+    for(i; i < dwSize; i++) {
+        if(strcmp(name, FPs[i]) == 0) {
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
 int main (int argc, char **argv) {
     CHAR *dll = argv[1];
     HANDLE hDll = LoadLibrary(dll);
-    printf("Loading %s\nThis approach will generate quite a lot of FP be careful. (Make sure to diff the result)\n", dll);
+    printf("Loading %s\nHookFinder Mr.Un1k0d3r RingZer0 Team\n", dll);
     if(hDll == NULL) {
         ExitProcess(0);
     }
