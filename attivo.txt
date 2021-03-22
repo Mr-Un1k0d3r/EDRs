@@ -1,0 +1,15 @@
+LdrOpenImageFileOptionsKey is hooked
+NtCreateProcessEx is hooked
+NtCreateSection is hooked
+NtOpenProcess is hooked
+NtProtectVirtualMemory is hooked
+NtReadVirtualMemory is hooked
+NtTerminateProcess is hooked
+NtWriteVirtualMemory is hooked
+ZwCreateProcessEx is hooked
+ZwCreateSection is hooked
+ZwOpenProcess is hooked
+ZwProtectVirtualMemory is hooked
+ZwReadVirtualMemory is hooked
+ZwTerminateProcess is hooked
+ZwWriteVirtualMemory is hooked
