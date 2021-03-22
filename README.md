@@ -162,3 +162,42 @@ ZwWriteVirtualMemory is hooked
 ------------------------------------------
 Completed
 ```
+
+# Sophos hooked ntdll.dll APIs
+
+```
+C:\Users\dev\Desktop>hook_finder_64.exe C:\Windows\System32\ntdll.dll
+Loading C:\Windows\System32\ntdll.dll
+------------------------------------------
+BASE                    0x00007FFEBDB10000      MZÉ
+PE                      0x00007FFEBDB100E8      PE
+ExportTableOffset       0x00007FFEBDC612A0
+OffsetNameTable         0x00007FFEBDC638C0
+Functions Count         0x97e (2430)
+------------------------------------------
+KiUserApcDispatcher is hooked
+LdrLoadDll is hooked
+NtAllocateVirtualMemory is hooked
+NtAlpcConnectPort is hooked
+NtFreeVirtualMemory is hooked
+NtMapViewOfSection is hooked
+NtProtectVirtualMemory is hooked
+NtQueueApcThread is hooked
+NtReadVirtualMemory is hooked
+NtSetContextThread is hooked
+NtUnmapViewOfSection is hooked
+NtWriteVirtualMemory is hooked
+RtlInstallFunctionTableCallback is hooked
+ZwAllocateVirtualMemory is hooked
+ZwAlpcConnectPort is hooked
+ZwFreeVirtualMemory is hooked
+ZwMapViewOfSection is hooked
+ZwProtectVirtualMemory is hooked
+ZwQueueApcThread is hooked
+ZwReadVirtualMemory is hooked
+ZwSetContextThread is hooked
+ZwUnmapViewOfSection is hooked
+ZwWriteVirtualMemory is hooked
+------------------------------------------
+Completed
+```
