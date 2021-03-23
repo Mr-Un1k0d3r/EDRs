@@ -24,6 +24,11 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [Attivo hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/attivo.txt)
 
+# CarbonBlack hooked ntdll.dll APIs (Thanks to Hackndo)
+
+[CarbonBlack hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/carbonblack.txt)
+
+
 # Credit
 
 Mr.Un1k0d3r RingZer0 Team
