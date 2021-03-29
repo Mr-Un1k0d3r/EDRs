@@ -28,6 +28,10 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [CarbonBlack hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/carbonblack.txt)
 
+### Symantec hooked ntdll.dll APIs (Thanks to CarsonSallis)
+
+[Symantec hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/symantec.txt)
+
 ## Credit
 
 Mr.Un1k0d3r RingZer0 Team
