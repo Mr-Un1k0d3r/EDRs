@@ -13,7 +13,6 @@ NtSetInformationFile is hooked
 NtSetValueKey is hooked
 NtTerminateProcess is hooked
 NtTerminateThread is hooked
-RtlInitializeSListHead is hooked
 ZwCreateFile is hooked
 ZwCreateKey is hooked
 ZwCreateUserProcess is hooked
