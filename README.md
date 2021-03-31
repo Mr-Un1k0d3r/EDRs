@@ -32,6 +32,11 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [Symantec hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/symantec.txt)
 
+### DeepInstinct hooked ntdll.dll APIs (Thanks to P0chAcc0)
+
+[DeepInstinct hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/deepinstinct.txt)
+
+
 ## Credit
 
 Mr.Un1k0d3r RingZer0 Team
