@@ -39,9 +39,9 @@ BOOL GetBytesByName(HANDLE hDll, CHAR *name) {
 }
 
 BOOL IsFalsePositive(CHAR *name) {
-    DWORD dwSize = 37;
+    DWORD dwSize = 41;
     DWORD i = 0;
-    CHAR *FPs[] = { "RtlInitializeSListHead", "DbgQueryDebugFilterState","DbgSetDebugFilterState","EtwpGetCpuSpeed","LdrAccessResource","LdrCallEnclave","LdrProcessRelocationBlockEx","NtQuerySystemTime","RtlAddAtomToAtomTable","RtlBarrier","RtlCommitDebugInfo","RtlConstructCrossVmEventPath","RtlConstructCrossVmMutexPath","RtlConvertToAutoInheritSecurityObject","RtlCreateHashTableEx","RtlDeCommitDebugInfo","RtlDowncaseUnicodeChar","RtlEndWeakEnumerationHashTable","RtlEqualComputerName","RtlGetDeviceFamilyInfoEnum","RtlInitStringEx","RtlInitUTF8String","RtlInitUTF8StringEx","RtlInitWeakEnumerationHashTable","RtlInterlockedFlushSList","RtlInterlockedPushEntrySList","RtlInterlockedPushListSListEx","RtlSetTimer","RtlWeaklyEnumerateEntryHashTable","RtlWerpReportException","RtlWnfDllUnloadCallback","RtlpNtMakeTemporaryKey","ShipAssertMsgA","ShipAssertMsgW","TpSetTimer","ZwQuerySystemTime","towupper" };
+    CHAR *FPs[] = { "_memicmp", "_strcmpi", "_stricmp", "_strnicmp", "RtlInitializeSListHead", "DbgQueryDebugFilterState","DbgSetDebugFilterState","EtwpGetCpuSpeed","LdrAccessResource","LdrCallEnclave","LdrProcessRelocationBlockEx","NtQuerySystemTime","RtlAddAtomToAtomTable","RtlBarrier","RtlCommitDebugInfo","RtlConstructCrossVmEventPath","RtlConstructCrossVmMutexPath","RtlConvertToAutoInheritSecurityObject","RtlCreateHashTableEx","RtlDeCommitDebugInfo","RtlDowncaseUnicodeChar","RtlEndWeakEnumerationHashTable","RtlEqualComputerName","RtlGetDeviceFamilyInfoEnum","RtlInitStringEx","RtlInitUTF8String","RtlInitUTF8StringEx","RtlInitWeakEnumerationHashTable","RtlInterlockedFlushSList","RtlInterlockedPushEntrySList","RtlInterlockedPushListSListEx","RtlSetTimer","RtlWeaklyEnumerateEntryHashTable","RtlWerpReportException","RtlWnfDllUnloadCallback","RtlpNtMakeTemporaryKey","ShipAssertMsgA","ShipAssertMsgW","TpSetTimer","ZwQuerySystemTime","towupper" };
 
     for(i; i < dwSize; i++) {
         if(strcmp(name, FPs[i]) == 0) {
