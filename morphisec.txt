@@ -1,0 +1,17 @@
+KiUserApcDispatcher is hooked
+KiUserExceptionDispatcher is hooked
+LdrFindEntryForAddress is hooked
+LdrResolveDelayLoadedAPI is hooked
+NtAreMappedFilesTheSame is hooked
+NtMapViewOfSection is hooked
+NtQueryAttributesFile is hooked
+NtQueryFullAttributesFile is hooked
+NtQueryVirtualMemory is hooked
+NtQueueApcThread is hooked
+RtlDosApplyFileIsolationRedirection_Ustr is hooked
+ZwAreMappedFilesTheSame is hooked
+ZwMapViewOfSection is hooked
+ZwQueryAttributesFile is hooked
+ZwQueryFullAttributesFile is hooked
+ZwQueryVirtualMemory is hooked
+ZwQueueApcThread is hooked
