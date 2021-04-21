@@ -11,6 +11,17 @@ This proof-of-concept is resolving the syscall ID dynamically no need to check t
 
 This proof-of-concept is patch the syscall ID specified in the code. The live version of the DLL is then patched using the hardcoded syscall ID and reverted to the original unpatched state.
 
+# get_syscall64.c
+
+This utility is used to retrived the sycall ID associated with a Windows API.
+
+```
+get_syscall64.exe ntdll.dll NtOpenProcess
+
+ntdll.dll!NtOpenProcess at 0x00007FF873F6CAD0
+NtOpenProcess syscall ID 0x00000026 (38)
+```
+
 # EDRs Hooked APIs
 
 Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` and submit the output.
