@@ -3,9 +3,13 @@
 This repo contains information about EDRs that can be useful during red team exercise.
 
 
-# patch_syscall_dynamically.c
+# patch_syscall_dynamically64.c
 
 This proof-of-concept is resolving the syscall ID dynamically no need to check the version running on the remote host. To get the information on disk (not tampered) a call to `CreateFileMapping` and `MapViewOfFile` Windows APIs is performed. The DLL is then parsed to retrived the data and used to patch the live code.
+
+# patch_syscall64.c
+
+This proof-of-concept is patch the syscall ID specified in the code. The live version of the DLL is then patched using the hardcoded syscall ID and reverted to the original unpatched state.
 
 # EDRs Hooked APIs
 
