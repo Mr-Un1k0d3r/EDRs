@@ -22,6 +22,14 @@ ntdll.dll!NtOpenProcess at 0x00007FF873F6CAD0
 NtOpenProcess syscall ID 0x00000026 (38)
 ```
 
+# Excel version of the list of hooks
+
+[EDRs.xlsx formatted by Vincent Yiu](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/EDRs.xlsx)
+
+# Markdown version of the list of hooks
+
+[EDRs.md formatted by Vincent Yiu](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/EDRs.md)
+
 # EDRs Hooked APIs
 
 Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` and submit the output.
