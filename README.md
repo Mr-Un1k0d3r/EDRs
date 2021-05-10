@@ -70,6 +70,15 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [Morphisec hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/morphisec.txt)
 
+### McAfee hooked ntdll.dll APIs
+
+[McAfee hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/mcafee.txt)
+
+### Cortex XDR hooked APIs (KERNEL MODE)
+
+:warning: These hooks are set kernel mode. They can't be unhooked from the user mode
+
+[Cortex XDR hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/cortex.txt)
 
 ## Credit
 
