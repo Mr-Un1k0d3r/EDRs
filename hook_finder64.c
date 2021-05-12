@@ -2,10 +2,28 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <tlhelp32.h>
 
 VOID DumpListOfExport(VOID *lib);
 BOOL GetBytesByName(HANDLE hDll, CHAR *name);
 BOOL IsFalsePositive(CHAR *name);
+VOID ListLoadedDlls();
+
+VOID ListLoadedDlls() {
+    HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, 0);
+    MODULEENTRY32 me32;
+    me32.dwSize = sizeof(MODULEENTRY32);
+
+    printf("Listing loaded modules\n------------------------------------------\n");
+    if(Module32First(hSnap, &me32)) {
+        do {
+            printf("%s is loaded at 0x%p.\n", me32.szExePath, me32.modBaseAddr);
+
+        } while(Module32Next(hSnap, &me32));
+    }
+
+    CloseHandle(hSnap);
+}
 
 VOID DumpListOfExport(VOID *lib) {
     DWORD dwIter = 0;
@@ -59,6 +77,7 @@ int main (int argc, char **argv) {
         ExitProcess(0);
     }
 
+    ListLoadedDlls();
     DumpListOfExport(hDll);
     CloseHandle(hDll);
     printf("------------------------------------------\nCompleted\n");
