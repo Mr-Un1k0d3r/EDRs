@@ -1,0 +1,70 @@
+C:\Users\test\Downloads>hook_finder64.exe C:\windows\system32\ntdll.dll
+Loading C:\windows\system32\ntdll.dll
+HookFinder Mr.Un1k0d3r RingZer0 Team
+C:\Users\test\Downloads\hook_finder64.exe is loaded at 0x0000000000400000.
+C:\Windows\SYSTEM32\ntdll.dll is loaded at 0x00007FFEC84E0000.
+C:\Windows\System32\KERNEL32.DLL is loaded at 0x00007FFEC83E0000.
+C:\Windows\System32\KERNELBASE.dll is loaded at 0x00007FFEC6140000.
+C:\Program Files (x86)\CheckPoint\Endpoint Security\EFR\SBA_ISWWH.dll is loaded at 0x00000000627A0000.
+C:\Program Files (x86)\CheckPoint\Endpoint Security\EFR\cphnt64.dll is loaded at 0x00007FFEACBF0000.
+C:\Windows\SYSTEM32\apphelp.dll is loaded at 0x00007FFEC3600000.
+C:\Windows\System32\msvcrt.dll is loaded at 0x00007FFEC70A0000.
+C:\Program Files (x86)\CheckPoint\Endpoint Security\EFR\cphusr64.dll is loaded at 0x00007FFEB9010000.
+------------------------------------------
+BASE                    0x00007FFEC84E0000      MZÉ
+PE                      0x00007FFEC84E00D8      PE
+ExportTableOffset       0x00007FFEC862C500
+OffsetNameTable         0x00007FFEC862EA54
+Functions Count         0x94b (2379)
+------------------------------------------
+CsrClientConnectToServer is hooked
+NtAllocateVirtualMemory is hooked
+NtCreateEvent is hooked
+NtCreateMutant is hooked
+NtCreateSemaphore is hooked
+NtCreateThread is hooked
+NtCreateThreadEx is hooked
+NtFreeVirtualMemory is hooked
+NtMapViewOfSection is hooked
+NtOpenEvent is hooked
+NtOpenMutant is hooked
+NtOpenSemaphore is hooked
+NtProtectVirtualMemory is hooked
+NtQueueApcThread is hooked
+NtQueueApcThreadEx is hooked
+NtResumeProcess is hooked
+NtResumeThread is hooked
+NtSetContextThread is hooked
+NtSetInformationThread is hooked
+NtSuspendProcess is hooked
+NtSuspendThread is hooked
+NtTerminateProcess is hooked
+NtTerminateThread is hooked
+NtUnmapViewOfSection is hooked
+NtWriteVirtualMemory is hooked
+ZwAllocateVirtualMemory is hooked
+ZwCreateEvent is hooked
+ZwCreateMutant is hooked
+ZwCreateSemaphore is hooked
+ZwCreateThread is hooked
+ZwCreateThreadEx is hooked
+ZwFreeVirtualMemory is hooked
+ZwMapViewOfSection is hooked
+ZwOpenEvent is hooked
+ZwOpenMutant is hooked
+ZwOpenSemaphore is hooked
+ZwProtectVirtualMemory is hooked
+ZwQueueApcThread is hooked
+ZwQueueApcThreadEx is hooked
+ZwResumeProcess is hooked
+ZwResumeThread is hooked
+ZwSetContextThread is hooked
+ZwSetInformationThread is hooked
+ZwSuspendProcess is hooked
+ZwSuspendThread is hooked
+ZwTerminateProcess is hooked
+ZwTerminateThread is hooked
+ZwUnmapViewOfSection is hooked
+ZwWriteVirtualMemory is hooked
+------------------------------------------
+Completed
