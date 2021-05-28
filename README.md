@@ -74,7 +74,7 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [CheckPoint SandBlast hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/checkpoint-sandblast.txt)
 
-## Eset hooked ntdll APIs
+## ESET endpoint Security 8.0.2028.0 hooked ntdll APIs
 
 [Eset hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/eset.txt)
 
