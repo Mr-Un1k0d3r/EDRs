@@ -1,0 +1,54 @@
+Loading C:\windows\system32\ntdll.dll
+HookFinder Mr.Un1k0d3r RingZer0 Team
+C:\EDRs-main\hook_finder64.exe is loaded at 0x0000000000400000.
+C:\Windows\SYSTEM32\ntdll.dll is loaded at 0x00007FFDB1AB0000.
+C:\Windows\System32\KERNEL32.DLL is loaded at 0x00007FFDB03F0000.
+C:\Windows\System32\KERNELBASE.dll is loaded at 0x00007FFDAF320000.
+C:\Windows\System32\msvcrt.dll is loaded at 0x00007FFDB08C0000.
+C:\Program Files\ESET\ESET Security\ebehmoni.dll is loaded at 0x00007FFD99910000.
+------------------------------------------
+BASE            0x00007FFDB1AB0000    MZ
+PE            0x00007FFDB1AB00E8    PE
+ExportTableOffset    0x00007FFDB1C01170
+OffsetNameTable        0x00007FFDB1C03790
+Functions Count        0x97e (2430)
+------------------------------------------
+NtAllocateVirtualMemory is hooked
+NtAllocateVirtualMemoryEx is hooked
+NtCreateEvent is hooked
+NtCreateMutant is hooked
+NtCreateSemaphore is hooked
+NtCreateThread is hooked
+NtCreateThreadEx is hooked
+NtDeviceIoControlFile is hooked
+NtMapViewOfSection is hooked
+NtMapViewOfSectionEx is hooked
+NtProtectVirtualMemory is hooked
+NtQueueApcThread is hooked
+NtReleaseWorkerFactoryWorker is hooked
+NtSetContextThread is hooked
+NtSuspendThread is hooked
+NtTerminateThread is hooked
+NtUnmapViewOfSection is hooked
+NtWriteVirtualMemory is hooked
+RtlDecompressBuffer is hooked
+ZwAllocateVirtualMemory is hooked
+ZwAllocateVirtualMemoryEx is hooked
+ZwCreateEvent is hooked
+ZwCreateMutant is hooked
+ZwCreateSemaphore is hooked
+ZwCreateThread is hooked
+ZwCreateThreadEx is hooked
+ZwDeviceIoControlFile is hooked
+ZwMapViewOfSection is hooked
+ZwMapViewOfSectionEx is hooked
+ZwProtectVirtualMemory is hooked
+ZwQueueApcThread is hooked
+ZwReleaseWorkerFactoryWorker is hooked
+ZwSetContextThread is hooked
+ZwSuspendThread is hooked
+ZwTerminateThread is hooked
+ZwUnmapViewOfSection is hooked
+ZwWriteVirtualMemory is hooked
+------------------------------------------
+Completed
