@@ -86,7 +86,7 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 ## Bitdefender hooked ntdll APIs
 
-[Eset hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/bitdefender.txt)
+[Bitdefender hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/bitdefender.txt)
 
 ## Credit
 Mr.Un1k0d3r RingZer0 Team
