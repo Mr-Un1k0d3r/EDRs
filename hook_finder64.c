@@ -5,7 +5,7 @@
 #include <tlhelp32.h>
 
 VOID DumpListOfExport(VOID *lib);
-BOOL GetBytesByName(HANDLE hDll, CHAR *name);
+VOID GetBytesByName(HANDLE hDll, CHAR *name);
 BOOL IsFalsePositive(CHAR *name);
 VOID ListLoadedDlls();
 
@@ -27,26 +27,26 @@ VOID ListLoadedDlls() {
 
 VOID DumpListOfExport(VOID *lib) {
     DWORD dwIter = 0;
-    CHAR* base = lib;
+    CHAR* base = (CHAR*)lib;
     CHAR* PE = base + (unsigned char)*(base + 0x3c);
     DWORD ExportDirectoryOffset = *((DWORD*)PE + (0x8a / 4));
     CHAR* ExportDirectory = base + ExportDirectoryOffset;
     DWORD dwFunctionsCount = *((DWORD*)ExportDirectory + (0x14 / 4));
     DWORD OffsetNamesTableOffset = *((DWORD*)ExportDirectory + (0x20 / 4));
-    DWORD* OffsetNamesTable = base + OffsetNamesTableOffset;
+    CHAR* OffsetNamesTable = base + OffsetNamesTableOffset;
 
     printf("------------------------------------------\nBASE\t\t\t0x%p\t%s\nPE\t\t\t0x%p\t%s\nExportTableOffset\t0x%p\nOffsetNameTable\t\t0x%p\nFunctions Count\t\t0x%x (%d)\n------------------------------------------\n",
     base, base, PE, PE, ExportDirectory, OffsetNamesTable, dwFunctionsCount, dwFunctionsCount);
 
     for(dwIter; dwIter < dwFunctionsCount - 1; dwIter++) {
-        DWORD64 offset = *(OffsetNamesTable + dwIter);
+        DWORD64 offset = *((DWORD*)OffsetNamesTable + dwIter);
         CHAR* current = base + offset;
         GetBytesByName((HANDLE)lib, current);
     }
 }
 
-BOOL GetBytesByName(HANDLE hDll, CHAR *name) {
-    FARPROC ptr = GetProcAddress(hDll, name);
+VOID GetBytesByName(HANDLE hDll, CHAR *name) {
+    FARPROC ptr = GetProcAddress((HMODULE)hDll, name);
     DWORD* opcode = (DWORD*)*ptr;
 
     if((*opcode << 24) >> 24 == 0xe9) {
