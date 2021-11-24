@@ -78,6 +78,10 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [Eset hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/eset.txt)
 
+## TrendMicro 17.7.1130 hooked ntdll APIs
+
+[TrendMicro hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/trend.txt)
+
 ### Cortex XDR hooked APIs (KERNEL MODE)
 
 :warning: These hooks are set kernel mode. They can't be unhooked from the user mode
