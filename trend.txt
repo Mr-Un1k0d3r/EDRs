@@ -1,0 +1,59 @@
+Loading C:\Windows\System32\ntdll.dll
+HookFinder Mr.Un1k0d3r RingZer0 Team
+C:\Users\trend\Desktop\hook_finder64.exe is loaded at 0x0000000000400000.
+C:\Windows\SYSTEM32\ntdll.dll is loaded at 0x00007FF927870000.
+C:\Windows\System32\KERNEL32.DLL is loaded at 0x00007FF926400000.
+C:\Windows\System32\KERNELBASE.dll is loaded at 0x00007FF925590000.
+C:\Windows\System32\msvcrt.dll is loaded at 0x00007FF925A70000.
+C:\Windows\system32\tmumh\20019\AddOn\8.55.0.1074\TmUmEvt64.dll is loaded at 0x00007FF91C5C0000.
+C:\Windows\System32\PSAPI.DLL is loaded at 0x00007FF926F30000.
+C:\Windows\System32\ADVAPI32.dll is loaded at 0x00007FF926130000.
+C:\Windows\System32\sechost.dll is loaded at 0x00007FF925B10000.
+C:\Windows\System32\RPCRT4.dll is loaded at 0x00007FF9261E0000.
+C:\Windows\system32\tmumh\20019\TmMon\2.9.0.1020\tmmon64.dll is loaded at 0x000000006E0F0000.
+C:\Windows\System32\SHLWAPI.dll is loaded at 0x00007FF926F40000.
+------------------------------------------
+BASE			0x00007FF927870000	MZê
+PE			0x00007FF9278700E8	PE
+ExportTableOffset	0x00007FF9279C1180
+OffsetNameTable		0x00007FF9279C37A4
+Functions Count		0x97f (2431)
+------------------------------------------
+LdrLoadDll is hooked
+LdrUnloadDll is hooked
+NtCreateMutant is hooked
+NtCreateThread is hooked
+NtCreateThreadEx is hooked
+NtDeviceIoControlFile is hooked
+NtGetContextThread is hooked
+NtLoadDriver is hooked
+NtMapViewOfSection is hooked
+NtProtectVirtualMemory is hooked
+NtQueryInformationThread is hooked
+NtQueueApcThread is hooked
+NtReadVirtualMemory is hooked
+NtSetContextThread is hooked
+NtSetInformationThread is hooked
+NtTerminateProcess is hooked
+NtUnmapViewOfSection is hooked
+NtUnmapViewOfSectionEx is hooked
+NtWriteVirtualMemory is hooked
+ZwCreateMutant is hooked
+ZwCreateThread is hooked
+ZwCreateThreadEx is hooked
+ZwDeviceIoControlFile is hooked
+ZwGetContextThread is hooked
+ZwLoadDriver is hooked
+ZwMapViewOfSection is hooked
+ZwProtectVirtualMemory is hooked
+ZwQueryInformationThread is hooked
+ZwQueueApcThread is hooked
+ZwReadVirtualMemory is hooked
+ZwSetContextThread is hooked
+ZwSetInformationThread is hooked
+ZwTerminateProcess is hooked
+ZwUnmapViewOfSection is hooked
+ZwUnmapViewOfSectionEx is hooked
+ZwWriteVirtualMemory is hooked
+------------------------------------------
+Completed
