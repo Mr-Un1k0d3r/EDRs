@@ -22,6 +22,11 @@ ntdll.dll!NtOpenProcess at 0x00007FF873F6CAD0
 NtOpenProcess syscall ID 0x00000026 (38)
 ```
 
+# unhookIAT.c
+
+This proof-of-concept detects hooks placed by EDR/AV/Malware in the Import Address Table and replace them with original addresses ([coded by xalicex](https://github.com/xalicex/Unhook-Import-Address-Table)).
+
+
 # Excel version of the list of hooks
 
 [EDRs.xlsx formatted by Vincent Yiu](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/EDRs.xlsx)
