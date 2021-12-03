@@ -6,6 +6,7 @@
 #pragma comment (lib, "dbghelp.lib")
 
 //coded by xalicex
+//Twitter : @AliceCliment
 
 void UnhookIAT() {
 
@@ -32,19 +33,21 @@ void UnhookIAT() {
 												&size,
 												NULL);
 
-	//Get name of DLL in Import Table
+	
 	int nbelement = (size/20)-1;
 	for (i = 0; i < nbelement ; i++){
 		
+		//Get name of the DLL in the Import Table
 		char * importName = (char *)((PBYTE) baseAddress + importTbl[i].Name);
 		printf("DLL name in IAT : %s\n",importName);
+		
+		//Get Import Lookup Table (OriginalFirstThunk) and Import Address Table (FirstThunk)
 		PIMAGE_THUNK_DATA thunk = (PIMAGE_THUNK_DATA) ((PBYTE) baseAddress + importTbl[i].FirstThunk);
 		PIMAGE_THUNK_DATA originalFirstThunk = (PIMAGE_THUNK_DATA) ((PBYTE) baseAddress + importTbl[i].OriginalFirstThunk);
 		PIMAGE_IMPORT_BY_NAME function = NULL; 
 		char* functionName;
-
 		
-		//Parse DLL loaded in memory
+		//Parse DLL loaded in memory to retrieve various info
 		const LPVOID BaseDLLAddr = (LPVOID)GetModuleHandle((LPCSTR)importName);
 		PIMAGE_DOS_HEADER pImgDOSHead = (PIMAGE_DOS_HEADER) BaseDLLAddr;
 		PIMAGE_NT_HEADERS pImgNTHead = (PIMAGE_NT_HEADERS)((DWORD_PTR) BaseDLLAddr + pImgDOSHead->e_lfanew);
@@ -53,7 +56,7 @@ void UnhookIAT() {
 		PDWORD Name=(PDWORD)((LPBYTE)BaseDLLAddr+pImgExpDir->AddressOfNames);
 		PWORD Ordinal=(PWORD)((LPBYTE)BaseDLLAddr+pImgExpDir->AddressOfNameOrdinals);
 
-		
+		//loop through all function in the lookup table for the current dll
 		while (originalFirstThunk->u1.AddressOfData != NULL){
 			
 			function = (PIMAGE_IMPORT_BY_NAME)((DWORD_PTR)baseAddress + originalFirstThunk->u1.AddressOfData);
@@ -85,10 +88,10 @@ void UnhookIAT() {
 
 				if(*currentFuncAddr != (PROC)(TrueAddress)) {
 					oldProtect = 0;
-					VirtualProtect_p((LPVOID) currentFuncAddr, 4096, PAGE_READWRITE, &oldProtect); 
+					VirtualProtect_p((LPVOID) currentFuncAddr, 8, PAGE_READWRITE, &oldProtect); 
 					printf("Bad News ! Function %s is hooked ! Address is %x and it's suppose to be %x \nUnhook like the captain !\n",functionName, *currentFuncAddr, TrueAddress);
 					*currentFuncAddr = (PROC)(TrueAddress);
-					VirtualProtect_p((LPVOID) currentFuncAddr, 4096, oldProtect, &oldProtect);
+					VirtualProtect_p((LPVOID) currentFuncAddr, 8, oldProtect, &oldProtect);
 				}else{
 					printf("Good news ! Function %s is not hooked :D\n",functionName);
 				}
