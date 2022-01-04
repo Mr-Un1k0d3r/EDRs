@@ -20,9 +20,7 @@ VOID ListLoadedDlls() {
 }
 
 int main(int argc, char **argv) {
-	
-	ListLoadedDlls();
-	
+		
 	DWORD dwSize = atoi(argv[1]);
 	CHAR *dll = argv[2];
 	CHAR *func = argv[3];
@@ -31,9 +29,8 @@ int main(int argc, char **argv) {
 	printf("%s!%s found at 0x%p\n", dll, func, ptr);
 	
 	CHAR *data = ptr;
-	
+	ListLoadedDlls();
 	DWORD i = 0;
-	
 	for(i; i < dwSize; i++) {
 		printf("%02x", (unsigned char)data[i]);
 	}
