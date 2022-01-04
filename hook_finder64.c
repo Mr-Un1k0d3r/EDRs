@@ -76,7 +76,9 @@ int main (int argc, char **argv) {
     if(hDll == NULL) {
         ExitProcess(0);
     }
-
+    // Force load the hooking DLL.
+    FARPROC dummy = GetProcAddress(LoadLibrary("ntdll.dll", "NtOpenProcess"));
+    
     ListLoadedDlls();
     DumpListOfExport(hDll);
     CloseHandle(hDll);
