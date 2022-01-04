@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <tlhelp32.h>
 
-VOID DumpListOfExport(VOID *lib);
-VOID GetBytesByName(HANDLE hDll, CHAR *name);
+VOID DumpListOfExport(VOID *lib, BOOL bNt);
+VOID GetBytesByName(HANDLE hDll, CHAR *name, BOOL bNt);
 BOOL IsFalsePositive(CHAR *name);
 VOID ListLoadedDlls();
 
@@ -25,7 +25,7 @@ VOID ListLoadedDlls() {
     CloseHandle(hSnap);
 }
 
-VOID DumpListOfExport(VOID *lib) {
+VOID DumpListOfExport(VOID *lib, BOOL bNt) {
     DWORD dwIter = 0;
     CHAR* base = (CHAR*)lib;
     CHAR* PE = base + (unsigned char)*(base + 0x3c);
@@ -41,14 +41,20 @@ VOID DumpListOfExport(VOID *lib) {
     for(dwIter; dwIter < dwFunctionsCount - 1; dwIter++) {
         DWORD64 offset = *((DWORD*)OffsetNamesTable + dwIter);
         CHAR* current = base + offset;
-        GetBytesByName((HANDLE)lib, current);
+        GetBytesByName((HANDLE)lib, current, bNt);
     }
 }
 
-VOID GetBytesByName(HANDLE hDll, CHAR *name) {
+VOID GetBytesByName(HANDLE hDll, CHAR *name, BOOL bNt) {
     FARPROC ptr = GetProcAddress((HMODULE)hDll, name);
     DWORD* opcode = (DWORD*)*ptr;
 
+	if(bNt) {
+		if(name[0] != 'N' && name[1] != 't') {
+			return;
+		}
+	}
+	
     if((*opcode << 24) >> 24 == 0xe9) {
         if(!IsFalsePositive(name)) {
             printf("%s is hooked\n", name);
@@ -72,15 +78,23 @@ BOOL IsFalsePositive(CHAR *name) {
 int main (int argc, char **argv) {
     CHAR *dll = argv[1];
     HANDLE hDll = LoadLibrary(dll);
+	BOOL bNt = TRUE;
     printf("Loading %s\nHookFinder Mr.Un1k0d3r RingZer0 Team\n", dll);
     if(hDll == NULL) {
         ExitProcess(0);
     }
     // Force load the hooking DLL.
-    FARPROC dummy = GetProcAddress(LoadLibrary("ntdll.dll", "NtOpenProcess"));
+    FARPROC dummy = GetProcAddress(LoadLibrary("ntdll.dll"), "NtOpenProcess");
     
     ListLoadedDlls();
-    DumpListOfExport(hDll);
+	
+	if(argc > 2) {
+		bNt = FALSE;
+	} else {
+		printf("***Listing Nt* API only\n\n");
+	}
+	
+    DumpListOfExport(hDll, bNt);
     CloseHandle(hDll);
     printf("------------------------------------------\nCompleted\n");
     return 0;
