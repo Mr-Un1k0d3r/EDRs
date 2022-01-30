@@ -3,10 +3,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <tlhelp32.h>
+#include <winnt.h>
 
 VOID DumpListOfExport(VOID *lib, BOOL bNt);
-VOID GetBytesByName(HANDLE hDll, CHAR *name, BOOL bNt);
-BOOL IsFalsePositive(CHAR *name);
+VOID CheckJmp(CHAR *name, DWORD* address, BOOL bNt);
 VOID ListLoadedDlls();
 
 VOID ListLoadedDlls() {
@@ -26,74 +26,53 @@ VOID ListLoadedDlls() {
 }
 
 VOID DumpListOfExport(VOID *lib, BOOL bNt) {
-    DWORD dwIter = 0;
-    CHAR* base = (CHAR*)lib;
-    CHAR* PE = base + (unsigned char)*(base + 0x3c);
-    DWORD ExportDirectoryOffset = *((DWORD*)PE + (0x8a / 4));
-    CHAR* ExportDirectory = base + ExportDirectoryOffset;
-    DWORD dwFunctionsCount = *((DWORD*)ExportDirectory + (0x14 / 4));
-    DWORD OffsetNamesTableOffset = *((DWORD*)ExportDirectory + (0x20 / 4));
-    CHAR* OffsetNamesTable = base + OffsetNamesTableOffset;
 
-    printf("------------------------------------------\nBASE\t\t\t0x%p\t%s\nPE\t\t\t0x%p\t%s\nExportTableOffset\t0x%p\nOffsetNameTable\t\t0x%p\nFunctions Count\t\t0x%x (%d)\n------------------------------------------\n",
-    base, base, PE, PE, ExportDirectory, OffsetNamesTable, dwFunctionsCount, dwFunctionsCount);
+    IMAGE_DOS_HEADER* MZ = (IMAGE_DOS_HEADER*)lib;
+    IMAGE_NT_HEADERS* PE = (IMAGE_NT_HEADERS*)((BYTE*)lib + MZ->e_lfanew);
+    IMAGE_EXPORT_DIRECTORY* export = (IMAGE_EXPORT_DIRECTORY*)((BYTE*)lib + PE->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress);
+    
+    DWORD *name = (DWORD*)((BYTE*)lib + export->AddressOfNames);
 
-    for(dwIter; dwIter < dwFunctionsCount - 1; dwIter++) {
-        DWORD64 offset = *((DWORD*)OffsetNamesTable + dwIter);
-        CHAR* current = base + offset;
-        GetBytesByName((HANDLE)lib, current, bNt);
-    }
-}
-
-VOID GetBytesByName(HANDLE hDll, CHAR *name, BOOL bNt) {
-    FARPROC ptr = GetProcAddress((HMODULE)hDll, name);
-    DWORD* opcode = (DWORD*)*ptr;
-
-	if(bNt) {
-		if(name[0] != 'N' && name[1] != 't') {
-			return;
-		}
-	}
-	
-    if((*opcode << 24) >> 24 == 0xe9) {
-        if(!IsFalsePositive(name)) {
-            printf("%s is hooked\n", name);
-        }
-    }
-}
-
-BOOL IsFalsePositive(CHAR *name) {
-    DWORD dwSize = 41;
     DWORD i = 0;
-    CHAR *FPs[] = { "_memicmp", "_strcmpi", "_stricmp", "_strnicmp", "RtlInitializeSListHead", "DbgQueryDebugFilterState","DbgSetDebugFilterState","EtwpGetCpuSpeed","LdrAccessResource","LdrCallEnclave","LdrProcessRelocationBlockEx","NtQuerySystemTime","RtlAddAtomToAtomTable","RtlBarrier","RtlCommitDebugInfo","RtlConstructCrossVmEventPath","RtlConstructCrossVmMutexPath","RtlConvertToAutoInheritSecurityObject","RtlCreateHashTableEx","RtlDeCommitDebugInfo","RtlDowncaseUnicodeChar","RtlEndWeakEnumerationHashTable","RtlEqualComputerName","RtlGetDeviceFamilyInfoEnum","RtlInitStringEx","RtlInitUTF8String","RtlInitUTF8StringEx","RtlInitWeakEnumerationHashTable","RtlInterlockedFlushSList","RtlInterlockedPushEntrySList","RtlInterlockedPushListSListEx","RtlSetTimer","RtlWeaklyEnumerateEntryHashTable","RtlWerpReportException","RtlWnfDllUnloadCallback","RtlpNtMakeTemporaryKey","ShipAssertMsgA","ShipAssertMsgW","TpSetTimer","ZwQuerySystemTime","towupper" };
+    for(i; i < export->NumberOfNames; i++) {
+        CheckJmp((CHAR*)lib + name[i], (DWORD*)GetProcAddress(lib, lib + name[i]), bNt);
+    }    
+}
 
-    for(i; i < dwSize; i++) {
-        if(strcmp(name, FPs[i]) == 0) {
-            return TRUE;
+VOID CheckJmp(CHAR *name, DWORD* address, BOOL bNt) {
+    BYTE* opcode = (BYTE*)address;
+
+    // Some EDRs hook more than Nt* API. Ex: LdrLoadDll 
+    if(bNt) {
+        if(name[0] != 'N' && name[1] != 't') {
+            return;
         }
     }
-    return FALSE;
+
+    // not all EDRs hook the first byte you will miss some hook
+    if(*opcode == 0xe9) {
+        printf("%s is hooked\n", name);
+    }
 }
 
 int main (int argc, char **argv) {
     CHAR *dll = argv[1];
     HANDLE hDll = LoadLibrary(dll);
-	BOOL bNt = TRUE;
+    BOOL bNt = TRUE;
+	
     printf("Loading %s\nHookFinder Mr.Un1k0d3r RingZer0 Team\n", dll);
     if(hDll == NULL) {
         ExitProcess(0);
     }
-    // Force load the hooking DLL.
-    FARPROC dummy = GetProcAddress(LoadLibrary("ntdll.dll"), "NtOpenProcess");
-    
+
     ListLoadedDlls();
-	
-	if(argc > 2) {
-		bNt = FALSE;
-	} else {
-		printf("***Listing Nt* API only\n\n");
-	}
-	
+    
+    if(argc > 2) {
+        bNt = FALSE;
+    } else {
+        printf("***Listing Nt* API only\n\n");
+    }
+    
     DumpListOfExport(hDll, bNt);
     CloseHandle(hDll);
     printf("------------------------------------------\nCompleted\n");
