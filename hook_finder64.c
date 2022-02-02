@@ -34,7 +34,11 @@ VOID DumpListOfExport(VOID *lib, BOOL bNt) {
     DWORD *name = (DWORD*)((BYTE*)lib + export->AddressOfNames);
 
     DWORD i = 0;
-    for(i; i < export->NumberOfNames; i++) {
+    for(i; i < export->NumberOfNames; i++) 
+
+{
+
+
         CheckJmp((CHAR*)lib + name[i], (DWORD*)GetProcAddress(lib, lib + name[i]), bNt);
     }    
 }
@@ -44,7 +48,7 @@ VOID CheckJmp(CHAR *name, DWORD* address, BOOL bNt) {
 
     // Some EDRs hook more than Nt* API. Ex: LdrLoadDll 
     if(bNt) {
-        if(name[0] != 'N' && name[1] != 't') {
+        if(!(name[0] == 'N' && name[1] == 't')) {
             return;
         }
     }
