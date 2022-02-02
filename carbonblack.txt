@@ -38,3 +38,17 @@ RtlWeaklyEnumerateEntryHashTable is hooked
 RtlWerpReportException is hooked
 RtlWnfDllUnloadCallback is hooked
 RtlpNtMakeTemporaryKey is hooked
+ZwAllocateVirtualMemory is hooked
+ZwCreateThread is hooked
+ZwCreateThreadEx is hooked
+ZwMapViewOfSection is hooked
+ZwOpenProcess is hooked
+ZwProtectVirtualMemory is hooked
+ZwQueryInformationProcess is hooked
+ZwQuerySystemInformation is hooked
+ZwQuerySystemTime is hooked
+ZwQueueApcThread is hooked
+ZwQueueApcThreadEx is hooked
+ZwReadVirtualMemory is hooked
+ZwUnmapViewOfSection is hooked
+ZwWriteVirtualMemory is hooked
