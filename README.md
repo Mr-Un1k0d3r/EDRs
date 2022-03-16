@@ -43,6 +43,11 @@ Want to contribute simply run `hook_finder64.exe C:\windows\system32\ntdll.dll` 
 
 [CrowdStrike hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/crowdstrike.txt)
 
+The newer version moved away from UMH and instead rely on kernel callback as shown below:
+
+![kernel callback](https://github.com/Mr-Un1k0d3r/EDRs/raw/main/kernel-callback.png)
+
+
 ### SentinelOne hooked ntdll.dll APIs
 
 [SentinelOne hooks list](https://raw.githubusercontent.com/Mr-Un1k0d3r/EDRs/main/sentinelone.txt)
