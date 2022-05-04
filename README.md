@@ -9,7 +9,7 @@ This proof-of-concept is resolving the syscall ID dynamically no need to check t
 
 # patch_syscall64.c
 
-This proof-of-concept is patch the syscall ID specified in the code. The live version of the DLL is then patched using the hardcoded syscall ID and reverted to the original unpatched state.
+This proof-of-concept is patching the syscall ID specified in the code. The live version of the DLL is then patched using the hardcoded syscall ID and reverted to the original unpatched state.
 
 # get_syscall64.c
 
