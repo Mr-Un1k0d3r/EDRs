@@ -1,3 +1,14 @@
+User-Mode hoooks
+- JMP Based Hook:
+    NtAllocateVirtualMemory
+    NtFreeVirtualMemory
+    NtSetInformationProcess
+- PUSH; RET Based Hook:
+    NtMapViewOfSection
+    NtUnmapViewOfSection
+    NtContinue
+
+
 RegNtCallbackObjectContextCleanup
 RegNtPostCreateKey
 RegNtPostCreateKeyEx
