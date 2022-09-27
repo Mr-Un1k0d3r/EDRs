@@ -163,8 +163,12 @@ int main(int argc, char **argv) {
         CreateProcessImpersonate(hTokenSystem, "cmd.exe");
     }
 
-    CloseHandle(hTokenSystem);
-    CloseHandle(hTokenTrustedInstaller);
+    if(hTokenSystem != NULL) {
+        CloseHandle(hTokenSystem);
+    }
+    if(hTokenTrustedInstaller != NULL) {
+        CloseHandle(hTokenTrustedInstaller);
+    }
 
     return 0;
 }
