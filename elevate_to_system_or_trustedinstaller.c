@@ -149,9 +149,11 @@ VOID CreateProcessImpersonate(HANDLE hToken, CHAR *command) {
 int main(int argc, char **argv) {
     
     ElevateSystem();
-    if(strcmp(argv[1], "trusted") == 0) {
-        bSpawnAsTrusted = TRUE;
-        ElevateTrustedInstaller();
+    if(argc >= 2) {
+        if(strcmp(argv[1], "trusted") == 0) {
+            bSpawnAsTrusted = TRUE;
+            ElevateTrustedInstaller();
+        }
     }
 
     printf("[%s] (SYSTEM) Token HANDLE 0x%p.\n", __func__, hTokenSystem);
