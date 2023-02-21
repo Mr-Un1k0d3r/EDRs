@@ -23,7 +23,7 @@ int main (int argc, char **argv) {
     CHAR *dll = argv[1];
     HANDLE hDll = LoadLibrary(dll);
 	
-    printf("Loading %s\\n", dll);
+    printf("Loading %s\n", dll);
     if(hDll == NULL) {
         ExitProcess(0);
     }
