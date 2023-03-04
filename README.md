@@ -102,6 +102,10 @@ The newer version moved away from UMH and instead rely on kernel callback as sho
 
 [Bitdefender hooks list](https://github.com/Mr-Un1k0d3r/EDRs/blob/main/bitdefender.txt)
 
+## Microsoft Defender for Endpoint hooked ntdll APIs
+
+[Microsoft Defender for Endpoint hook list](./defender_for_endpoint.txt)
+
 ## Credit
 Mr.Un1k0d3r RingZer0 Team
 
